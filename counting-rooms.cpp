@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
+typedef pair<int,int>pii;
 const int N=1e3+7;
 int n, m;
 
@@ -8,6 +9,9 @@ vector<string>g;
 
 //visited array
 int visited[N][N];
+
+//direction vector
+vector<pii>direct={{0,1},{0,-1},{1,0},{-1,0}};
 
 //valid
 bool isValid(int i, int j){
@@ -18,11 +22,13 @@ void dfs(int i, int j){
     if(visited[i][j]) return;
     if(g[i][j]=='#')  return;
     visited[i][j]=true;
-    dfs(i, j-1);
-    dfs(i, j+1);
-    dfs(i-1, j);
-    dfs(i+1, j);
-
+    // dfs(i, j-1);
+    // dfs(i, j+1);
+    // dfs(i-1, j);
+    // dfs(i+1, j);
+    for(auto d: direct){
+        dfs(i+d.first, j+d.second);
+    }
 }
 int main(){
     
